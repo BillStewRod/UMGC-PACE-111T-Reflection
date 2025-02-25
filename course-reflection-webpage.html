@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Learning Journey Reflection</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --highlight-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --text-color: #333;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f9f9f9;
+            overflow-x: hidden;
+        }
+        
+        header {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .intro {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+        
+        .unit-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 3rem;
+        }
+        
+        .unit-card {
+            flex: 1 1 320px;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            transform: translateY(0);
+            cursor: pointer;
+        }
+        
+        .unit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .unit-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 1.5rem;
+            position: relative;
+        }
+        
+        .unit-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .unit-subtitle {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .unit-content {
+            padding: 1.5rem;
+            display: none;
+        }
+        
+        .unit-content.active {
+            display: block;
+        }
+        
+        .unit-content h3 {
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+        
+        .reflection-section {
+            margin-bottom: 1.5rem;
+        }
+        
+        .reflection-section h4 {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background-color: var(--light-color);
+            border-radius: 4px;
+            margin-bottom: 0.8rem;
+        }
+        
+        .key-takeaway {
+            background-color: rgba(52, 152, 219, 0.1);
+            border-left: 4px solid var(--secondary-color);
+            padding: 1rem;
+            margin-top: 1.5rem;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .key-takeaway-title {
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .conclusion {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 8px;
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .conclusion h2 {
+            margin-bottom: 1.5rem;
+        }
+        
+        .future-goals {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .goal-card {
+            flex: 1 1 320px;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            backdrop-filter: blur(5px);
+            transition: var(--transition);
+        }
+        
+        .goal-card:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .goal-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .goal-title::before {
+            content: "→";
+            margin-right: 0.5rem;
+            color: var(--highlight-color);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .unit-toggle {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: transparent;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1.5rem;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .unit-icon {
+            display: block;
+            width: 40px;
+            height: 40px;
+            background-color: var(--highlight-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            margin-right: 1rem;
+        }
+        
+        .unit-header-content {
+            display: flex;
+            align-items: center;
+        }
+        
+        .assignment-list {
+            list-style-type: none;
+            margin-top: 0.5rem;
+        }
+        
+        .assignment-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px dashed #eee;
+        }
+        
+        .assignment-list li:last-child {
+            border-bottom: none;
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                padding: 1.5rem 0;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .unit-card {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>My Learning Journey Reflection</h1>
+            <p class="subtitle">UMGC Course Reflection - Spring 2025</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <section class="intro">
+            <h2>Course Reflection Journey</h2>
+            <p>This interactive webpage documents my learning experience throughout this semester. Each unit has provided me with valuable insights and skills that will benefit my academic journey at UMGC and my future career. Below, I've reflected on what I've learned in each unit, how I plan to apply this knowledge, and my key takeaways.</p>
+            <p>Click on each unit card to expand and read my reflections on the assignments and discussions from that week.</p>
+        </section>
+        
+        <div class="unit-container">
+            <!-- Unit 1 -->
+            <div class="unit-card">
+                <div class="unit-header">
+                    <div class="unit-header-content">
+                        <div class="unit-icon">1</div>
+                        <div>
+                            <h2 class="unit-title">Unit 1: Getting Started</h2>
+                            <p class="unit-subtitle">Introduction & Mindset, DAACS</p>
+                        </div>
+                    </div>
+                    <button class="unit-toggle">+</button>
+                </div>
+                <div class="unit-content">
+                    <div class="reflection-section">
+                        <h4>Introduction & Mindset Discussion</h4>
+                        <p>In this discussion, I explored the concept of growth mindset versus fixed mindset and how our beliefs about our abilities can significantly impact our success. I learned that embracing challenges, persisting through obstacles, and viewing effort as a path to mastery are crucial aspects of a growth mindset.</p>
+                    </div>
+                    
+                    <div class="reflection-section">
+                        <h4>DAACS Assignment</h4>
+                        <p>The Diagnostic Assessment and Achievement of College Skills (DAACS) helped me identify my academic strengths and areas for improvement. The assessment evaluated my self-regulated learning skills, including time management, motivation, and study strategies. This self-awareness provided a foundation for my growth throughout the course.</p>
+                    </div>
+                    
+                    <div class="key-takeaway">
+                        <h5 class="key-takeaway-title">Key Takeaway</h5>
+                        <p>Understanding that intelligence and abilities are not fixed traits but can be developed through dedication and hard work transformed my approach to learning. I now view challenges as opportunities for growth rather than threats to my self-image.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Unit 2 -->
+            <div class="unit-card">
+                <div class="unit-header">
+                    <div class="unit-header-content">
+                        <div class="unit-icon">2</div>
+                        <div>
+                            <h2 class="unit-title">Unit 2: Setting Direction</h2>
+                            <p class="unit-subtitle">Goals & Motivations</p>
+                        </div>
+                    </div>
+                    <button class="unit-toggle">+</button>
+                </div>
+                <div class="unit-content">
+                    <div class="reflection-section">
+                        <h4>Goals & Motivations Assignment</h4>
+                        <p>This assignment helped me articulate both my short-term academic goals and long-term career aspirations. I learned the importance of setting SMART goals (Specific, Measurable, Achievable, Relevant, Time-bound) and connecting them to my intrinsic motivations.</p>
+                        <p>I identified that my primary motivation for pursuing education is to enhance my professional skills and create more opportunities for career advancement. Understanding my "why" has helped me stay focused during challenging times.</p>
+                    </div>
+                    
+                    <div class="key-takeaway">
+                        <h5 class="key-takeaway-title">Key Takeaway</h5>
+                        <p>Setting clear, well-defined goals with specific timeframes and action steps keeps me accountable and motivated. When my goals are aligned with my deeper motivations and values, I'm more resilient in the face of obstacles and setbacks.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Unit 3 -->
+            <div class="unit-card">
+                <div class="unit-header">
+                    <div class="unit-header-content">
+                        <div class="unit-icon">3</div>
+                        <div>
+                            <h2 class="unit-title">Unit 3: Time Management</h2>
+                            <p class="unit-subtitle">Big Rocks & Scheduling</p>
+                        </div>
+                    </div>
+                    <button class="unit-toggle">+</button>
+                </div>
+                <div class="unit-content">
+                    <div class="reflection-section">
+                        <h4>What are Your Big Rocks? Discussion</h4>
+                        <p>This discussion introduced the concept of "big rocks" – the most important priorities in my life that should be scheduled first. I identified my education, family relationships, health, and career development as my big rocks.</p>
+                        <p>I learned that effective time management isn't about finding more time but making deliberate choices about how to use the time I have.</p>
+                    </div>
+                    
+                    <div class="reflection-section">
+                        <h4>Organizing Your Schedule Assignment</h4>
+                        <p>In this assignment, I created a comprehensive weekly schedule that incorporated my big rocks while also accounting for regular responsibilities and personal needs. I learned techniques for prioritizing tasks, avoiding procrastination, and maintaining work-life balance.</p>
+                    </div>
+                    
+                    <div class="key-takeaway">
+                        <h5 class="key-takeaway-title">Key Takeaway</h5>
+                        <p>Scheduling my priorities rather than prioritizing what's already on my schedule has been a game-changer. By blocking time for my most important goals first and protecting that time, I've become more productive and focused while reducing stress and last-minute rushes.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Unit 4 -->
+            <div class="unit-card">
+                <div class="unit-header">
+                    <div class="unit-header-content">
+                        <div class="unit-icon">4</div>
+                        <div>
+                            <h2 class="unit-title">Unit 4: Building Support</h2>
+                            <p class="unit-subtitle">Success Network</p>
+                        </div>
+                    </div>
+                    <button class="unit-toggle">+</button>
+                </div>
+                <div class="unit-content">
+                    <div class="reflection-section">
+                        <h4>Engage with your Success Network Assignment</h4>
+                        <p>This assignment prompted me to identify and map out my personal success network – the people and resources who can support me throughout my academic journey. I learned that having a strong support system is crucial for overcoming challenges and achieving goals.</p>
+                        <p>I identified mentors, peers, family members, and institutional resources that form my success network, and I developed strategies for strengthening these connections.</p>
+                    </div>
+                    
+                    <div class="key-takeaway">
+                        <h5 class="key-takeaway-title">Key Takeaway</h5>
+                        <p>No one succeeds entirely on their own. Building and maintaining relationships with people who can provide different types of support – emotional encouragement, academic guidance, professional connections, and practical assistance – creates a safety net that increases my resilience and chances of success.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Unit 5 -->
+            <div class="unit-card">
+                <div class="unit-header">
+                    <div class="unit-header-content">
+                        <div class="unit-icon">5</div>
+                        <div>
+                            <h2 class="unit-title">Unit 5: Career Exploration</h2>
+                            <p class="unit-subtitle">Industry Trends & Interview Prep</p>
+                        </div>
+                    </div>
+                    <button class="unit-toggle">+</button>
+                </div>
+                <div class="unit-content">
+                    <div class="reflection-section">
+                        <h4>Preparing for Your Informational Interview Discussion</h4>
+                        <p>This discussion helped me prepare for conducting an informational interview with a professional in my field of interest. I learned how to identify potential interviewees, craft thoughtful questions, and make a positive impression.</p>
+                    </div>
+                    
+                    <div class="reflection-section">
+                        <h4>Investigating Trends in Your Career Field Assignment</h4>
+                        <p>For this assignment, I researched current trends, challenges, and opportunities in my chosen career field. This investigation gave me valuable insights into how the industry is evolving and what skills I need to develop to remain competitive.</p>
+                    </div>
+                    
+                    <div class="key-takeaway">
+                        <h5 class="key-takeaway-title">Key Takeaway</h5>
+                        <p>Proactively exploring career trends and connecting with professionals in my field provides real-world context for my education. This knowledge helps me make strategic decisions about skill development and specialization that align with industry demands and future opportunities.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Unit 6 -->
+            <div class="unit-card">
+                <div class="unit-header">
+                    <div class="unit-header-content">
+                        <div class="unit-icon">6</div>
+                        <div>
+                            <h2 class="unit-title">Unit 6: Professional Connections</h2>
+                            <p class="unit-subtitle">Networking & Informational Interview</p>
+                        </div>
+                    </div>
+                    <button class="unit-toggle">+</button>
+                </div>
+                <div class="unit-content">
+                    <div class="reflection-section">
+                        <h4>Networking & Teamwork Discussion</h4>
+                        <p>In this discussion, I explored effective networking strategies and the importance of teamwork in professional settings. I learned that building authentic relationships based on mutual value is more effective than transactional networking.</p>
+                    </div>
+                    
+                    <div class="reflection-section">
+                        <h4>Informational Interview Assignment</h4>
+                        <p>I conducted an informational interview with a professional in my field and gained valuable insights about career paths, day-to-day responsibilities, industry challenges, and advice for newcomers. This experience helped me validate my career choice and refine my professional goals.</p>
+                    </div>
+                    
+                    <div class="key-takeaway">
+                        <h5 class="key-takeaway-title">Key Takeaway</h5>
+                        <p>Networking is not just about collecting contacts but building genuine relationships where both parties benefit. The informational interview gave me insider knowledge that I couldn't have gained from research alone, demonstrating the power of learning directly from experienced professionals.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Unit 7 -->
+            <div class="unit-card">
+                <div class="unit-header">
+                    <div class="unit-header-content">
+                        <div class="unit-icon">7</div>
+                        <div>
+                            <h2 class="unit-title">Unit 7: University Resources</h2>
+                            <p class="unit-subtitle">Support Services</p>
+                        </div>
+                    </div>
+                    <button class="unit-toggle">+</button>
+                </div>
+                <div class="unit-content">
+                    <div class="reflection-section">
+                        <h4>Support Services Summary Assignment</h4>
+                        <p>For this assignment, I researched and summarized the various support services available to UMGC students. I discovered resources for academic support, career guidance, financial assistance, technical help, and personal well-being that I wasn't fully aware of before.</p>
+                        <p>I developed a plan for utilizing specific resources that align with my needs and goals, particularly the writing center, library services, and career services.</p>
+                    </div>
+                    
+                    <div class="key-takeaway">
+                        <h5 class="key-takeaway-title">Key Takeaway</h5>
+                        <p>Taking full advantage of university resources can significantly enhance my academic success and overall college experience. These services represent an investment the university has made in my success, and utilizing them strategically gives me a substantial return on my tuition investment.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <section class="conclusion">
+            <h2>Looking Forward: Applying What I've Learned</h2>
+            <p>This course has equipped me with essential skills and knowledge that extend beyond academic success to professional development and personal growth. As I move forward in my educational journey at UMGC, I'll continue to build upon these foundations.</p>
+            
+            <div class="future-goals">
+                <div class="goal-card">
+                    <h3 class="goal-title">Academic Application</h3>
+                    <p>I will implement the time management strategies and study techniques I've learned to maximize my academic performance in future courses. By maintaining a growth mindset, utilizing university resources, and consistently applying effective learning strategies, I aim to achieve and maintain academic excellence.</p>
+                </div>
+                
+                <div class="goal-card">
+                    <h3 class="goal-title">Professional Development</h3>
+                    <p>I will continue expanding my professional network and staying informed about industry trends. The career exploration skills and networking strategies I've developed will help me identify opportunities, make informed career decisions, and position myself competitively in the job market.</p>
+                </div>
+                
+                <div class="goal-card">
+                    <h3 class="goal-title">Personal Growth</h3>
+                    <p>I will maintain balance by prioritizing my "big rocks" and nurturing my support network. The self-awareness and reflection skills I've developed in this course will serve me well as I navigate challenges, set new goals, and continue growing as a lifelong learner.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>Created for UMGC Course Reflection Assignment - Spring 2025</p>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleButtons = document.querySelectorAll('.unit-toggle');
+            
+            toggleButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const unitCard = this.closest('.unit-card');
+                    const content = unitCard.querySelector('.unit-content');
+                    
+                    content.classList.toggle('active');
+                    this.textContent = content.classList.contains('active') ? '–' : '+';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
