@@ -63,6 +63,14 @@ header:hover h1::after {
     left: 0;
 }
 
+p {
+    margin-bottom: .5rem;
+}
+
+p:last-child {
+    margin-bottom: 0;
+}
+
 .subtitle {
     font-size: 1.3rem;
     font-weight: 300;
