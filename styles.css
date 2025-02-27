@@ -154,15 +154,41 @@ header:hover h1::after {
 .unit-content {
     padding: 2rem;
     display: none;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.6s ease-in-out, padding 0.6s ease-in-out;
+    height: auto;
+    overflow: visible;
+    transition: all 0.6s ease-in-out;
 }
 
 .unit-content.active {
     display: block;
-    max-height: 1500px;
+    height: auto;
     padding: 2rem;
+}
+
+/* Update mobile styles */
+@media screen and (max-width: 768px) {
+    .unit-card {
+        margin-bottom: 1.5rem;
+    }
+
+    .unit-content,
+    .unit-content.active {
+        height: auto;
+        max-height: none;
+        overflow: visible;
+        transition: none;
+    }
+
+    .unit-container {
+        overflow: visible;
+        height: auto;
+    }
+
+    .reflection-section,
+    .key-takeaway {
+        height: auto;
+        overflow: visible;
+    }
 }
 
 .unit-content h3 {
@@ -431,25 +457,52 @@ footer {
     animation: fadeIn 0.5s ease-out forwards;
 }
 
-@media (max-width: 768px) {
-    header {
-        padding: 2rem 0;
-    }
-    
-    h1 {
-        font-size: 2.2rem;
-    }
-    
-    .container {
-        padding: 0 1.5rem;
-    }
-    
+/* Mobile Responsive Fixes */
+@media screen and (max-width: 768px) {
     .unit-card {
-        flex: 1 1 100%;
+        margin-bottom: 1rem;
     }
-    
-    .conclusion {
-        padding: 3rem 2rem;
+
+    .unit-content {
+        max-height: none;
+        overflow: visible;
+    }
+
+    .unit-card.active .unit-content {
+        max-height: none;
+        overflow: visible;
+    }
+
+    .container {
+        padding: 1rem;
+        overflow: visible;
+    }
+
+    body {
+        overflow-x: hidden;
+    }
+
+    .unit-container {
+        overflow: visible;
+    }
+}
+
+/* Additional Mobile Optimizations */
+@media screen and (max-width: 480px) {
+    .unit-header-content {
+        padding: 0.5rem;
+    }
+
+    .unit-title {
+        font-size: 1.2rem;
+    }
+
+    .unit-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .reflection-section h4 {
+        font-size: 1.1rem;
     }
 }
 .reflection-section ul,
