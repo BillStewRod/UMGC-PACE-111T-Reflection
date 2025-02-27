@@ -301,6 +301,11 @@ header:hover h1::after {
     flex-wrap: wrap;
     gap: 2rem;
     margin-top: 3rem;
+    margin-bottom: 3rem;  /* Add this line for extra spacing */
+}
+
+.final-reflection {
+    margin-top: 2rem;  /* Add this line for extra spacing */
 }
 
 .goal-card {
